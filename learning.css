@@ -1,0 +1,243 @@
+/* Viewport: The user's visible area */
+/* Box model: a box that wraps around every HTML element and consists of: content, padding, borders and margins */
+
+p {  /* Applies to all elements of the same type, i.e. paragraphs etc */
+   width: 500px/60%;  /* % is relative to the size of the parent container */
+   min-width: 100px;  /* When the broswer is resized, the box's width will not get below 100px */
+   max-width: 100px;  /* When the broswer is resized, the box's width will not get over 100px */
+   
+   height: 1000px;
+   min-height: 200px;  /* When the broswer is resized, the box's hieght will not get below 200px */
+   max-height: 200px;  /* When the broswer is resized, the box's height will not get over 200px */
+
+   padding: 30px;  /* The space between the content and the border (can also specify 'top right bottom left', i.e. '30px 20px 50px 40px'*/
+   /* Can also use 'padding-top', 'padding-right', 'padding-bottom, 'padding-left' to set padding to a specific side */
+   
+   box-sizing: content-box/border-box;  /* Defines how the width & height are calculated */
+   /* content-box: any padding & border add to the content's overall size (i.e. padding & border are NOT inluded in the content's size)
+      border-box: any padidng & border shrink the content to maintain the same overall size (defined by width and height) (i.e. padding & border ARE inluded in the content's size) */
+   
+   margin: auto; /* The space outside the border (can also specify 'top right bottom left') */
+   /* Can also use 'margin-top', 'margin-right', 'margin-bottom, 'margin-left' to set margin to a specific side */
+   
+
+   overflow: visible/hidden/scroll/auto;  /* Controls what happens to content that overflows outside of the box */
+   /* visible (default): content will be displayed outside the box
+      hidden: content will be hidden
+      scroll: content will be hidden, but scrollbar will be available
+      auto: similar to scroll, but adds a scrollbar only if necessary */
+   visibility: visible/hidden;   /* Controls if an element is shown/hidden */
+   
+
+   font-family: "Arial", "Helvetica", sans-serif;  /* In order of availability */
+   /* Web-safe fonts: these are fonts that are generally available on most OSs (see https://www.cssfontstack.com), though not guaranteed. Therefore, the above fallback approach is recommended. */
+   /* Can also use "@font-face" to use a custom font (e.g. Google Fonts) */
+   font-size: small/medium/large/10px/3em/2r/40%;  /* Default is 16px */
+   /* em: This is relative/proportional to the font size of the parent element. Be careful though since because of the inheritance of the parent element, it accumulates across nested elements! */
+   /* rem: This is relative/proportional to the font size of the root element (usually the <html> element). It does not accumulate so it's more consistent, but if the default browser font size is changed, all rem units will scale as well. */
+   font-weight: lighter/normal/bold/bolder/100;  /* Defines the thickness of characters (from 100 to 900) [i.e. normal (400), bold (700)] */
+   font-style: normal/italic/oblique;
+   word-spacing: 3px/-2px/0.05em;
+   letter-spacing: 3px/-2px/0.05em;  /* Sets the horizontal spacing between text characters */
+   line-height: normal/10px/25%/0.25;  /* Sets the vertical spacing between lines of text (should be LARGER than then font-size). It is recommended to use a relative option (e.g. 25% or 0.25) so that this takes effect when the font-size changes */
+   opacity: 0.5;  /* Contorls how visible the text is */
+}
+
+
+/* When the user hovers over an element */
+p:hover {
+   color: #ff0000;
+   text-decoration: none;  /* Removes underline */
+}
+
+
+div {  /* Applies to all 'div' elements */
+   color: red/#ff0000/rgb(255 0 0);
+   text-align: center/left/right/justify;  /* Aligns content within a BLOCK element (this has no effect on INLINE elements) */
+   text-transform: lowercase/uppercase/capitalize;  /* Controls the capitalisation of text */
+
+   /* For images */
+   background-image: url("URL");
+   background-color: green/#008000/rgb(0 128 0);
+   background-position: left/right/center top/bottom/center;  /* By default, the background image is placed at the top-left (left top) corner of an element and repeated both vertically and horizontally */
+   background-size: auto/contain/cover;
+}
+
+
+div p {  /* Applies to all elements of the same type within another element, i.e. paragraphs inside divs */
+   ...
+}
+
+
+/* Applies to element(s) with the same id */
+#id {  
+   transition-property: X;  /* The property which the transition effect is for - need to also have "#id:hover {...}" */
+   transition-duration: 2s/200ms;
+   transition-delay: 1s;
+   transition-timing-function: ease/linear/ease-in/ease-out/ease-in-out;
+   /* ease (default): slow - fast - slow
+      linear: steady speed 
+      ease-in: slow start
+      ease-out: slow end
+      ease-in-out: similar to ease, but starts a bit slower */
+   transition: X 2s 1s linear;  /* All properties declared together in order (transition-property transition-duration transition-delay transition-timing-function) */
+   /* Can use 'all' instead of 'X' to apply the properties to each element that changes, not just 'X' */
+}
+
+
+/* Applies to element(s) with the same class name */
+.className {  
+   display: inline/block/inline-block;  /* Controls how much horizontal space an element takes*/
+   /* inline: takes up the same space as the content - it starts on the same line (gets stacked next to other elements)
+      block: takes up full width of the page - it starts on a new line (gets stacked on top of other elements)
+      inline-block: combination - can specify dimensions (width & height) */
+   /* For block-level elements, setting width & height will change the size of the element. For inline elements, setting width & height will have no effect */
+   /* For block-level elements, setting margin will add space around the element. For inline elements, setting margin will only add space horizontally */
+   /* For block-level elements, setting padding will add space inside the element. For inline elements, setting padding will add space on all four sides and if it takes more space than what's available, it will overlap the surrounding elements */
+
+   float: left/right;   /* Moves the element as far left/right and allows other elements to flow around it */
+   clear: left/right/both;  /* Controls the flow next to floated elements, i.e. what should happen with the element that is next to a floating element */
+   display: flow-root;  /* Controls overflowing of elements */
+   z-index: 5;  /* Controls how far back (lower)/forward (higher) an element appears on the viewport when it gets overlapped with another element */
+}
+
+.button {
+   border: thin/medium/thick  none/dotted/dashed/solid/double/groove/ridge/inset/outset  red;  /* border-width  border-style  border-color */
+   border-radius: 20px;  /* The higher the px, the rounder the corners */
+}
+
+
+/* A FlexBox makes it easier to design flexible responsive layout structure without using float or positioning */
+/* The class is called the "flex container" and each class child/item is called a "flex item" */
+.flexbox {  
+   display: flex/inline-flex;
+   /* flex: behaves as a block element - container takes the full width available and stacks on top of other elements
+      inline-flex: behaves as an inline element - container takes up as much width as its items and stacks next to other elements */
+   
+   flex-direction: row/row-reverse/column/column-reverse;  /* Defines in which direction the container wants to stack the flex items */
+   /* row (default): stacks horizontally (from left to right)
+      row-reverse: horizontally (from right to left)
+      column: stacks vertically, from top to bottom
+      column-reverse: stacks vertically, from bottom to top */
+   flex-wrap: nowrap/wrap/wrap-reverse;  /* Specifies whether the flex items should wrap (at the end of the page) or not */
+   /* nowrap (default): items will fit in the same line 
+      wrap: items that don't fit in a line, will wrap to the next line
+      wrap-reverse: items should wrap in reverse order */
+   flex-flow: row wrap;  /* Shorthand property for setting both the "flex-direction" and "flex-wrap" properties */
+   
+   flex-grow: 0;  /* Specifies how much the flex item(s) will grow relative to the rest of the flexible items */
+   /* 0 (default): items won't expand to fill the remaining width of the container
+      1: items will expand equally to fill the remaining width of the container */
+   flex-shrink: 0;  /*  Controls how the flex item(s) will shrink if they are larger than the container
+   /* 1 (default): all items will shrink by the same amount 
+      0: flex items will not shrink at all and will overflow  (unless 'flex-wrap: wrap') */
+   flex-basis: auto/50px;  /* Sets the initial size of the flex items */
+   /* auto (default): flex items have the same size as the content */
+   flex: 0 1 auto;  /* Shorthand syntax: 'flex-grow flex-shrink flex-basis'*/
+   
+   justify-content: flex-start/flex-end/center/space-between/space-around/space-evenly/inherit;  /* Aligns the flex items horizontally */
+   /* flex-start (default): items are positioned at the beginning of the container
+      flex-end: items are positioned at the end of the container
+      center: items are positioned in the center of the container
+      space-between: items will have space between them
+      space-around: iterms will have space before, between and after them
+      space-evenly: items will have equal space around them
+      initial: item inherits property from its parent element */
+   
+   align-items: stretch/flex-start/flex-end/center/baseline;  /* Aligns the flex items vertically */
+   /* stretch (default): flex items are stretched to fill the container
+      flex-start: items are positioned at the top of the container
+      flex-end: items are positioned at the end of the container
+      center: items are positioned at the centre of the container
+      baseline: items are position such that their baselines are aligned */
+
+   align-content: flex-start/flex-end/center/space-between/space-around/space-evenly;  /* Aligns the flex lines */
+   /* flex-start (default): flex lines are positioned at the start of the container
+      flex-end: flex lines are positioned at the end of the container
+      center: flex lines are positioned in the middle of the container
+
+   /* Tip: use `position` for styling smaller page components rather than large page layout blocks */
+   position: static/absolute/fixed/relative/sticky;
+   /* static (default): element is positioned normally based on the flow
+      absolute: element is positioned relative to its first nearest positioned ancestor element
+      fixed: element is positioned relative to the viewport (top/down/right/left)
+      relative: element is positioned relative to its normal position (top/down/right/left)
+      sticky: element is positioned based on the user's scroll position (i.e. sticks to the page when you reach its scroll position) */
+}
+
+
+/* Similarly to a FlexBox, a Grid offers a grid-based layout system with rows and columns, making it easier to design web pages without having to use floats and positioning */
+/* The class is called the "grid container" and each class child/item is called a "grid item" */
+/* Grid lines: the vertical and horizontal lines that divide the grid into columns and rows */
+/* Grid cell: a single unit/item in the grid */
+/* Grid track: a particular grid column/row */
+/* Gutter: the gaps that separate grid tracks */
+/* Grid area: spans one or more grid cells and tracks */
+/* Explicit grid: the grid area defined within the defined grid tracks */
+/* Implicit grid: the grid area defined outside the defined grid tracks */
+
+.grid {
+   display: grid/inline-grid;
+   /* grid: behaves as a block element - container takes the full width available and stacks on top of other elements
+      inline-grid: behaves as an inline element - container takes up as much width as its items and stacks next to other elements */
+
+   /* This is used for explicit grids */
+   grid-template-columns: auto/max-content/min-content/50px/1fr;  /* Sets the grid columns [i.e. 1fr 2fr 1fr ==> this creates 3 columns (second column has twice the size as the other columns)] */
+   /* auto: size is automatically calcualted, i.e. determined by the container's and items' sizes
+      max-content: size is set based on the size of the largest item in each column
+      min-content: size is set based on the size of the smallest item in each column
+      length (px): size can be set manually */
+   grid-template-rows: auto/max-content/min-content/50px;  /* Sets the grid rows [i.e. 100px repeat(3, 1fr) ==> this creates 4 columns (the first column has size 100 px and the other columns have equal size)] */
+
+   /* This is used for implicit grids */
+   grid-auto-columns: auto/max-content/min-content/50px;
+   grid-auto-rows: auto/max-content/min-content/50px;
+
+   row-gap: normal/50px;  /* Sets the gap between the rows */
+   column-gap: normal/100px;  /* Set the gap between the columns */
+   gap: 50px 100px;  /* Sets the gap for rows and columns (row-gap column-gap) */
+}
+
+
+/* RESPONSIVE WEB DESIGN */
+
+/* Media queries: allow to selectively apply CSS based on specific condition (i.e. based on device width) so that the viewports of all devices are working properly (the CSS will only be executed if the condition is satisfied) */
+/* Media queries must start with an 'at-rule' ('@media'): this is a statement that instructs CSS how to behave */
+/* Following the @ rule is the 'media type' which defines the device being used to display the website - for this purpose we use 'screen' */
+/* Following the media type are the 'media features' which check for a specific feature of the browser or device (e.g. max-width: 650px) - each feature is wrapped in parentheses '()' and multiple features are separated by the 'and' keyword */
+
+/* Common breakpoints:
+320px - 480px: Extra small mobile devices (older smartphones)
+481px - 768px: Small tablets and large smartphones
+769px - 1024px: Small laptops and tablets
+1025px - 1280px: Laptops and small desktops
+1281px and above: Large desktops and high-resolution screens */
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+   .container {
+      width: 100%;
+   }
+}
+
+ /* Tablets */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+   .container {
+      width: 90%;
+   }
+}
+
+/* Desktops */
+@media only screen and (min-width: 1025px) {
+   .container {
+      width: 75%;
+   }
+}
+
+/* Fluid Layout
+- Use of percentage-based (%) values or relative units (em, rem) for containers instead of fixed pixel (px) values. 
+- Use the 'min-width' & 'max-width' properties to ensure that the container doesn't shrink too small on small devices or too large on large devices, maintaining a readable layout.
+- Use Flexbox and Grid since these layout modules inherently support fluid layouts
+- Use flexible images (i.e. background-size: cover)
+==> These allow containers to scale based on the viewport width, maintaining a balanced, readable look without being too wide ot too narrow */
+/* Breakpoint: a specific width at which the webpage's style is changd to ensure the best possible user exeprience */
