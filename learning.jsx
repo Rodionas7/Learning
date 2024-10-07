@@ -24,6 +24,4 @@ const MyComponentArrow = ({ name, age }) => {  // Destructuring Props
     return <h1>My name is {name} and I am {age} years old!</h1>;
 }
 
-
-ReactDOM.render(<MyComponentRegular name="Rod" age={25}/>, document.getElementById("root"))
-ReactDOM.render(<MyComponentArrow name="Rod" age={25}/>, document.getElementById("root"));
+export {MyComponentRegular, MyComponentArrow};  // If exporting a single component can use "export default <Component>"
