@@ -121,7 +121,7 @@ class Trainer extends Shoe {
     }
     // Extend with a new method
     checkWeight(weight) {
-        if (this,weight > 2) {
+        if (this.weight > 2) {
             console.log("Heavy");
         } else {
             console.log("Light");

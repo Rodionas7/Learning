@@ -3,7 +3,7 @@
 // Props (Properties): Allow you to pass data from a parent component to a child component
 // State: Data that needs to be tracked in an application
 // Hook: A special function that allows to use different React features inside components. They must be called inside function components, at top level and cannot be conditional. 
-    // useState: Allows to track state in a function component
+    // useState: Allows to track state in a function component ==> const [state, updateState] = useState("initialValue")
     // useEffect:
 
 import React from "react";
@@ -13,6 +13,12 @@ import { useState } from "react";
 // Creating component using function notation
 function MyComponentRegular(props) {  // Props
     const [count, setCount] = useState(0);
+    const [car, setCar] = useState({  // A state can also hold an object 
+        brand: "Ford",
+        model: "Mustang",
+        year: "1964",
+        color: "red"
+      });
 
     return (
         <h1>My name is {props.name} and I am {props.age} years old!</h1>
