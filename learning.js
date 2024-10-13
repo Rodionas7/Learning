@@ -106,6 +106,10 @@ const adidas = {
 }
 // Note: When using nested functions inside methods, use arrow functions instead of regular functions to maintain correct context of "this"
 
+const shoePropertiesObject = {...adidas };  // Unpacking the object's properties into a new object using the 'spread operator' (...)
+const shoeKeys = Object.keys(adidas )  // Unpack the object's keys into an array
+const shoeValues = Object.values(adidas )  // Unpack the object's values into an array
+
 
 // Extending a class: The new class (Trainer) will have all attributes of existing class (Shoe) but can also add additional ones
 class Trainer extends Shoe {
