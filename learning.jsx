@@ -5,12 +5,11 @@
 - State: Data that needs to be tracked in an application
 - Hook: A special function that allows to use different React features inside components. They must be called inside function components, at top level and cannot be conditional. 
     • useState: Allows to track state in a component
-    When a state is updated, the component (and any other child components) rerender(s)
+    When a state is updated, the component (and any other child components) re-render(s)
     ==> const [state, updateState] = useState("initialValue")
     (`updateState` is a function that updates the state)
 
-    • useEffect: Allows to perform side effects in a component
-    This gives more control on when to eprform specific operations
+    • useEffect: Allows to perform side effects in a component. This gives more control over when to perform specific operations
     1. Only on initial render
     useEffect(() => {
         ...
@@ -29,6 +28,7 @@
         };
     }, [prop, state]);  // We input the dependencies in the brackets
     
+
     • useContext: Allows child components to access a state/prop without passing it from the parent component (aka "prop drilling")
     ==> const ExampleContext = createContext()
 
@@ -55,14 +55,33 @@
             );
         }
     
+
+    • useRef: Allows to store mutable data without causing a re-render
+    ==> const [count, setCount] = useState(0);
+        const prevCountRef = useRef();
+        const prevCount = prevCountRef.current;  // We use `current` to get the previous value
     
-    
-    
+        useEffect(() => {
+            prevCountRef.current = count;
+        }, [count]);
+        
+
+    • useCallback: Allows to memoize functions, i.e. ccall them only when necessary. This prevents unecessary calls.
+    1. Only on initial render
+    ==> const exampleFunction = useCallback(() => {
+            ...
+        }, []);  // Note the empty brackets
+
+    2. On initial render and any time dependencies (states/props) change
+    ==> const exampleFunction = useCallback(() => {
+            ...
+        }, [prop, state]);  // We input the dependencies in the brackets
+
 
 */
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 
 // Creating component using function notation
