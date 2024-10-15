@@ -14,14 +14,46 @@
     1. Only on initial render
     useEffect(() => {
         ...
+        /// "Cleanup" function: Timeouts, subscriptions, event listeners, and other effects that are
+        /// no longer needed should be disposed to avoid memory leaks
+        return () => {
+            ...  
+        };
     }, []);  // Note the empty brackets
 
     2. On initial render and any time dependencies (states/props) change
     useEffect(() => {
         ...
+        return () => {
+            ..
+        };
     }, [prop, state]);  // We input the dependencies in the brackets
     
-    
+    • useContext: Allows child components to access a state/prop without passing it from the parent component (aka "prop drilling")
+    ==> const ExampleContext = createContext()
+
+        function ParentComponent() {
+            const [exampleState, setExampleState] = useState("example")
+            /// Can also be a variable: const exampleVariable = "example"
+
+            return (
+                <ExampleContext.Provider value={exampleState}>
+                    <h1>Parent Component</h1>
+                    <ChildComponent />
+                <ExampleContext/>
+            );
+        }
+
+        function ChildComponent() {
+            const context = ExampleContext()
+
+            return (
+                <>
+                    <h2>Child Component</h2>
+                    <p>This is an {context}</p>
+                </>
+            );
+        }
     
     
     
@@ -50,7 +82,12 @@ function MyComponentRegular(props) {  // Props
     }
 
     useEffect(() => {
-        console.log(`The count is ${count}`);
+        const userClick = () => console.log(`The count is ${count}`);
+        window.addEventListener("click", userClick);
+
+        return () => {
+            window.removeEventListener("click", onClick); // Cleanup
+        };
     }, [count]);
 
     return (
