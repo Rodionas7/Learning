@@ -74,14 +74,15 @@
 
     2. On initial render and any time dependencies (states/props) change
     ==> const exampleFunction = useCallback(() => {
+            console.log(`Current state: ${exampleState}`)
             ...
-        }, [prop, state]);  // We input the dependencies in the brackets
+        }, [exampleState]);  // We input the dependencies in the brackets
 
 
 */
 
 import React from "react";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, useCallback } from "react";
 
 
 // Creating component using function notation
@@ -95,10 +96,10 @@ function MyComponentRegular(props) {  // Props
         new: false
     });
 
-    function updateValues() {
-        setCount(count + 1);
+    const updateValues = useCallback(() => {
+        setCount(prevCount => prevCount + 1);
         setCar((car) => ({...car, year: 1980}))  // Updates the `year` property
-    }
+    }, [count, car]);
 
     useEffect(() => {
         const userClick = () => console.log(`The count is ${count}`);
