@@ -1,13 +1,18 @@
-// JavaScript (JS) or VanillaJS: The core language
-// TypeScript: Variation of JavaScript introducing fetures like strong typing
-// ReactJS, VueJS, AngularJS: JS frameworks allowing to write JS-based front-end application (introduce new coding conventions like JSX/TSX which simplify how we mix JS and HTML)
-// npm (Node Package Manager), Babel, WebPack, Gulp: Helper applications ("build tools") that optimise human-readable JS for the best browser performance
-// Node.js: A tool/runtime environment/ used to run JS on the server (backend) through npm
+/*
+- JavaScript (JS) or VanillaJS: The core language
+- TypeScript: Variation of JavaScript introducing fetures like strong typing
+- ReactJS, VueJS, AngularJS: JS frameworks allowing to write JS-based front-end application (introduce new coding conventions like JSX/TSX which simplify how we mix JS and HTML)
+- npm (Node Package Manager), Babel, WebPack, Gulp: Helper applications ("build tools") that optimise human-readable JS for the best browser performance
+- Node.js: A tool/runtime environment used to run JS on the server (backend) through npm.
+It is used in real-time applications (e.g. Chat application, collaborative tools, streaming services, online gaming) which require handling many connections simultaneously, due to its non-blocking I/O model.
+- Vite: A build tool that makes development process faster and more efficient that the 'Create React App' (CRA) tool
+*/
 
-// let: Variables can be reassigned
-// const: Variables cannot be reassigned
-// Both types are block-scoped, i.e. they are only accessible within the block (i.e. {}) they are declared
-
+/*
+let: Variables can be reassigned
+const: Variables cannot be reassigned
+==> Both types are block-scoped, i.e. they are only accessible within the block (i.e. {}) they are declared
+*/
 
 // Function Declaration - can be called before it's defined
 function myFunction(param1, param2) {
@@ -229,12 +234,64 @@ existingElement.dispatchEvent(customClickEvent);
 
 
 
-// Sending API requests
-async function fetchData(url) {
-    let response = await fetch(url);
-    let data = await response.json();
-    return data; // Returns a promise that resolves to data
+// GET HTTP request
+// Asynchronous Functions: Handle operations that might take some time to complete (e.g. fetching data from a server) without blocking the execution of the rest of the code 
+async function getData(url) {
+    try {
+        // This pauses the function execution until the promise (what is returned from `fetch`) is resolved
+        const response = await fetch(url, {  
+            method: "GET",  // Default - can also use POST, PUT, DELETE, PATCH, OPTIONS
+            headers: {  // HTTP headers
+                'Content-Type': 'application/json',  // Specify content type (e.g. application/json)
+                'Authorization': 'Bearer <token>',  // Specify authorization type (e.g. Bearer token)
+            },
+            body: null,  // Default - The data sent with the request
+            mode: "cors",  // Default - To allow cross-origin requests
+
+        });  
+
+        if (!response.ok) {  // Status code not 200-299
+            throw new Error(`Error: ${response.status}`);
+        }
+    
+        const data = await response.json();  // Parses the response as JSON
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
+
+getData("https://example.com/getExample").then(data => {  // We use `then()` to access the promise
+    console.log(`Result: ${data}`)
+})
+
+// POST HTTP request
+async function sendData(url, payload) {
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer my-token',
+            },
+            body: JSON.stringify(payload),  // Need to convert payload to JSON string (i.e. serialize)
+            mode: "cors",
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+examplePayload = {"key1": "value1", "key2": "value2", "key3": "value3"};  // The data to send in key-value pairs
+sendData("https://example.com/postExample", examplePayload)
 
 const mouseEvent = document.createEvent("MouseEvent")
 const ev = new Event("")
