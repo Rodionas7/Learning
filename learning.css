@@ -29,6 +29,7 @@ p {  /* Applies to all elements of the same type, i.e. paragraphs etc */
    visibility: visible/hidden;   /* Controls if an element is shown/hidden */
    
 
+   color: red/#ff0000/rgb(255 0 0);
    font-family: "Arial", "Helvetica", sans-serif;  /* In order of availability */
    /* Web-safe fonts: these are fonts that are generally available on most OSs (see https://www.cssfontstack.com), though not guaranteed. Therefore, the above fallback approach is recommended. */
    /* Can also use "@font-face" to use a custom font (e.g. Google Fonts) */
@@ -44,15 +45,7 @@ p {  /* Applies to all elements of the same type, i.e. paragraphs etc */
 }
 
 
-/* When the user hovers over an element */
-p:hover {
-   color: #ff0000;
-   text-decoration: none;  /* Removes underline */
-}
-
-
 div {  /* Applies to all 'div' elements */
-   color: red/#ff0000/rgb(255 0 0);
    text-align: center/left/right/justify;  /* Aligns content within a BLOCK element (this has no effect on INLINE elements) */
    text-transform: lowercase/uppercase/capitalize;  /* Controls the capitalisation of text */
 
@@ -197,6 +190,15 @@ div p {  /* Applies to all elements of the same type within another element, i.e
    column-gap: normal/100px;  /* Set the gap between the columns */
    gap: 50px 100px;  /* Sets the gap for rows and columns (row-gap column-gap) */
 }
+
+
+/* Pseudo-classes: Define a special state of an element (e.g. when you mouse over it) - syntax: 
+   selector:pseudo-class {
+      property: value;
+   }
+*/
+
+
 
 
 /* RESPONSIVE WEB DESIGN */

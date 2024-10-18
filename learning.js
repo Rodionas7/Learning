@@ -148,6 +148,13 @@ class Trainer extends Shoe {
 };
 
 
+/*
+Browser scopes:
+• window: Represents the browser window 
+• document: Represents the entire HTML document (web page)
+• element: Represents an individual HTML element on a web page
+*/
+
 // Selecting an HTML element
 document.querySelector("main");  // Returns the first HTML element based on type (e.g. main)
 document.querySelector("#id");  // Returns the first first HTML element based on id  (can also use `getElementById`)
@@ -210,21 +217,43 @@ existingParent.insertAdjacentHTML("afterbegin", content);
 // Note: Use `insertAdjacentHTML` when you want to insert new elements without replacing the existing content
 // Note: Use `innerHTML` when you want to replace the exisiting content (or itif content doesn't already exist)
 
-// Event Listeners
+
+/* Event Listeners
+Most common DOM events (https://www.w3schools.com/jsref/dom_obj_event.asp):
+• click: When an element is clicked
+• dbclick: When an element is double-clicked
+• mouseover: When the mouse pointer enters a child element
+• mouseout: When the mouse pointer leaves a child element
+• mouseenter: When the mouse pointer enters a parent element
+• mouseleave: When the mouse pointer leaves a parent element
+• keydown: When a key is pressed down
+• keyup: When a key is released
+• submit: When a form is submitted
+• input: When the value of an input element changes
+• focus: When an element gets focus/selected
+(the difference with click that the element can be selected programatically (i.e. focus()) or using the keyboard (e.g. 'tab')
+• blur: When an element loses focus/is unselected
+• scroll: When the user scrolls an element or the page
+• resize: When the window is resized
+*/
+
 existingElement.addEventListener("click", () => console.log("Clicked"));  // When the element is clicked
 existingElement.addEventListener("mouseover", () => console.log("Mouse is over child"));  // When you hover over the child element
 existingElement.addEventListener("mouseout", () => console.log("Mouse has left child"));  // When you leave the child element
-existingParent.addEventListener("mouseenter", () => console.log("Mouse is over parent"))  // When you hover over the parent element
-existingParent.addEventListener("mouseleave", () => console.log("Mouse has left parent"))  // When you leave the parent element
-// Note: To pass arguments to a callback function, wrap it inside an anonymous function, i.e. addEventListener("...", () => { myFunction(arg) })
+existingParent.addEventListener("mouseenter", () => console.log("Mouse is over parent"));  // When you hover over the parent element
+existingParent.addEventListener("mouseleave", () => console.log("Mouse has left parent"));  // When you leave the parent element
 
-window.addEventListener("scroll", () => console.log("Scroll"))  // When the page is scrolled
-window.addEventListener("resize", () => console.log("Resized"))  // When the page is resized
+window.addEventListener("scroll", () => console.log("Scroll"));  // When the page is scrolled
+window.addEventListener("resize", () => console.log("Resized"));  // When the page is resized
+
+/* Note: To pass arguments to a callback function, wrap it inside an anonymous function or an arrow function, i.e. 
+addEventListener("..."), function() => { myFunction(arg) };
+addEventListener("...", () => myFunction(arg));  */
 
 
-// Simulating events
-const clickEvent = new Event("click");  // Creating click event
-existingElement.dispatchEvent(clickEvent);  // Trigger
+// Custom events - used when we want to simulate events programmatically (e.g. for testing)
+const clickEvent = new Event("customClick");
+existingElement.dispatchEvent(clickEvent);  // Manually trigger
 
 const customClickEvent = new CustomEvent("click", {  // Creating custom click event, in order to pass extra data (e.g. custom message)
     detail: {message: "This is a custom click!"}
@@ -290,8 +319,9 @@ async function sendData(url, payload) {
         console.error('Error:', error);
     }
 }
+
 examplePayload = {"key1": "value1", "key2": "value2", "key3": "value3"};  // The data to send in key-value pairs
 sendData("https://example.com/postExample", examplePayload)
 
-const mouseEvent = document.createEvent("MouseEvent")
-const ev = new Event("")
+const mouseEvent = new Event("MouseEvent")
+element.dispatchEvent(mouseEvent)
