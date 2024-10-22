@@ -1,8 +1,9 @@
-/* Viewport: The user's visible area */
-/* Box model: a box that wraps around every HTML element and consists of: content, padding, borders and margins */
-/* Block-level elements: Take up the full width of their parent container, creating a new line before and after
-   Examples: <div>, <p>, <h1> to <h6>, <header>, <footer>, <section>, <article>, <ul>, <ol>, <li>, <nav>, <form> */
-/* Inline-level elements: Take up only as much width as their container requires, without starting a new line
+/* 
+• Viewport: The user's visible area
+• Box model: a box that wraps around every HTML element and consists of: content, padding, borders and margins
+• Block-level elements: Take up the full width of their parent container, creating a new line before and after
+   Examples: <div>, <p>, <h1> to <h6>, <header>, <footer>, <section>, <article>, <ul>, <ol>, <li>, <nav>, <form>
+• Inline-level elements: Take up only as much width as their container requires, without starting a new line
    Examples: <span>, <a>, <img>, <strong>, <em>, <input>, <button>, <label>, <code>, <b>, <i>
 */ 
 
@@ -350,3 +351,9 @@ p.className {  /* e.g. p elements with the class name "className" */
 - Use flexible images (i.e. background-size: cover)
 ==> These allow containers to scale based on the viewport width, maintaining a balanced, readable look without being too wide ot too narrow */
 /* Breakpoint: a specific width at which the webpage's style is changd to ensure the best possible user exeprience */
+
+
+/* Tailwind: A utility-first CSS framework  
+Utility classes are redefined calsses for styling - see https://tailwindcss.com/ for details
+You can extend or modify the default Tailwind styles using the `tailwind.config.js` file
+*/
