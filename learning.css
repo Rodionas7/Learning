@@ -253,17 +253,22 @@ p.className {  /* e.g. p elements with the class name "className" */
    Syntax:  selector:pseudo-class {
                property: value;
             }
+   For a full list, see https://www.w3schools.com/cssref/css_ref_pseudo_classes.php
    
-   • First child: Matches any specified element that is the first child of any parent element
+   • First child: Used to style any specified element that is the first child of any parent element (can also use last-child to get the Last child)
    ==> p:first-child {...}  (Matches any <p> element that is the first child of any element)
    ==> p i:first-child {...}  (Matches the first <i> element in all <p> elements)
    ==> p:first-child i {...}  (Matches all <i> elements in <p> elements that are the first child of another element)
 
-   • Hover: When you mouse over an element
+   • Not: Used to style any specified element that DOES NOT match a certain selector (e.g. class, id)
+   ==> p:not(.className) {...}  (Excludes <p> elements with specific class name)
+   ==> p:not(#id) {...}  (Excludes <p> elements with specific id)
+
+   • Hover: Used to style an element when you mouse over it
       - Can change attributes ==> div:hover {...}  (Change attributes when you mouse over the <div>)
       - Can show a new element ==> div:hover p {...}  (Show a <p> when you mouse   over the <div>)
 
-   • Link:
+   • Link: Used to style a link
       - link: Unvisited link ==> a:link {...}
       - visited: Visited link ==> a:visited {...}
       - hover: Mouse over link ==> a:link {...}
@@ -271,23 +276,40 @@ p.className {  /* e.g. p elements with the class name "className" */
    Note: The order matters
 */
 
+
 /* Pseudo-elements: Used to style specific parts of an element
    Syntax:  selector::pseudo-element {
                property: value;
             }
+   For a full list, see https://www.w3schools.com/cssref/css_ref_pseudo_elements.php
    
-   • First line: Matches the first line of text
+   • First line: Used to style the first line of text
    ==> p::first-line {...}  (Formats the first line of text in all <p> elements)
 
-   • First letter: Matches the first letter of text
+   • First letter: Used to style the first letter of text
    ==> p::first-letter {...}  (Formats the first letter of text in all <p> elements)
+
+   • Before: Used to add decorative content before an element's content
+   Note: This is just visual and doesn't create a real element in the DOM
+   ==> p::before {...}  (Inserts before the content of each <p> element)
+
+   • After: Used to add decorative content after an element's content
+   Note: This is just visual and doesn't create a real element in the DOM
+   ==> p::after {...}  (Inserts after the content of each <p> element)
+
+   • Selection: Used to style the portion of text that is selected by the user
+   ==> ::selection {...}  (Any text that's selected on the page)
+
+   • Placeholder: Used to style the placeholder text of <input> elements
+   ==> ::placeholder {...}  (Matches the placeholder text of all <input> elements 
+
+   • Marker: Used to style the markers of list items (i.e. numbers, bullets)
+   ==> ::marker {...}  (Matches all markers)
 */
 
 
 
-
 /* RESPONSIVE WEB DESIGN */
-
 /* Media queries: allow to selectively apply CSS based on specific condition (i.e. based on device width) so that the viewports of all devices are working properly (the CSS will only be executed if the condition is satisfied) */
 /* Media queries must start with an 'at-rule' ('@media'): this is a statement that instructs CSS how to behave */
 /* Following the @ rule is the 'media type' which defines the device being used to display the website - for this purpose we use 'screen' */
