@@ -1,0 +1,265 @@
+<!-- DOM (Document Object Model): An object model (created by the browser) describing a hierarchical tree structure of the document, showing how elements relate and nest within each other -->
+<!-- Node: An item in the DOM tree. For example, in `<p>Hello World!</p>`: the <p> tag is the element node and "Hello World!" is the text node -->
+
+# Tells the browser what type of file to expect along with the HTML version
+<!doctype html>
+<html lang="en-gb" dir="ltr">                                     
+    <!-- Contains all the metadata that the browser needs to know but will not be displayed on the page -->
+    <head>
+        <!-- Title - appears in the browser's toolbox -->
+        <title>Title</title>	
+        
+        <!-- Metadata about the HTML document -->
+        <meta charset="utf-8">  <!-- The character encoding -->
+        <meta name="description" content="Description"> <!-- The description of the web page -->
+        <meta name="keywords" content="HTML, CSS, JavaScript"> <!-- The keywords for search engines -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- The user's visible area of the page -->
+        
+        <!-- Link to the stylesheet -->
+        # href: The location of the stylesheet (css)
+        # rel: The relationship between the HTML doc and the linked doc, i.e. "stylesheet"
+        <link href="css.css" rel="stylesheet">
+
+        <!-- Link to the script -->
+        # src: The location of the script (js)
+        # defer (default): HTML is parsed and JavaScript file is downloaded simultaneously. Once HTML file is parsed, the script is executed. 
+        # async: HTML is parsed and JavaScript file is downloaded simultaneously. Once JS file is downloaded, the parsing stops and the script is executed.
+        <script type="module" src="javasript.js"></script>   
+    </head>
+
+    <!-- Contains the information and content that will be displayed on the page --> 
+    <body>
+        <header>
+            <!-- Heading (h1 is the largest, h6 is the smallest) -->
+            <h1>Heading</h1>	
+        </header>
+
+        <main>
+            <!-- Paragraph -->
+            # class: Allows to target all elements by a common name in CSS or JS
+            # id: Allows to target a unique element with that id in CSS or JS
+            <p class="className" id="idName">This is a paragraph</p>
+            
+            <!-- Italic font -->
+            # i: visual-only
+            # em: emphasis
+            (It's important to differentiate between the two types as it affects when listening to content)
+            <p><i>Italics</i></p>
+            <p><em>Italics</em></p>	
+            
+            <!-- Bold font -->
+            # b: visual-only
+            # strong: emphasis
+            (It's important to differentiate between the two types as it affects when reading the content)
+            <p><b>Bold</b></p> 
+            <p><strong>Bold</strong></p>
+            
+            <!-- Division (block-level) -->
+            # A block-level element always starts on a new line and the browser automatically adds some (margin) before and after the element. It takes the full width available.
+            <div class="..." id="...">
+                <!-- Span (inline-level) -->
+                # An inline element does not start on a new line. It only takes up as much width as necessary.
+                <p>The word is <span style="color: blue">blue</span></p>  # Paragraph
+            </div>
+
+            <!-- Time -->
+            # datetime: The datetime in format YYYY-MM-DD hh:mm:ss
+            <time datetime="2024-03-16 14:31:28">This is the time</time>
+            
+            <!-- Insert code -->
+            <code>print(“Hello World”)</code>
+            
+            <!-- Subscript & superscript -->
+            <p>Water is H<sub>2</sub>O and square meters is sq<sup>2</sup></p>
+            
+            <!-- Unrecorded list (bullet points) -->
+            <ul>
+                <li>Bullet point 1</li>
+                <br>	# Line break
+                <li>Bullet point 2</li>
+            </ul>
+            
+            <!-- Ordered list (numbered points) -->
+            <ol>
+                <li>Numbered point 1</li>
+                <pre>	# Include indentation
+                    <li>Numbered point 2</li>
+                </pre>
+            </ol>
+
+            <!-- Definition list -->
+            <dl>
+                <dt>List 1</dt>
+                <dd>Description of list 1</dd>
+            </dl>
+
+            <!-- Insert image -->
+            # src: The location of the image
+            # alt: What shows if image is unable to load
+            # width, height: The width/height of the image (it's important to specify the width & height cause if not, the page might flicker while the image loads)
+            # srcset: A list of URLs of the image and resolution/width, which the browser swaps out based on what either viewport width or image pixel width
+            # media: A condition which if satisfied, the browser uses the specified URL
+            <picture>
+                <source media="(min-width:600px)" srcset="URL">
+                <source srcset="URL2">
+                <img src="URL" alt="description" width="500" height="400" srcset="URL2 2x, URL 3x, URL4 4x">
+            </picture>
+
+            <figure>
+                <img src="URL" alt="description" width="500" height="400" srcset="URL2 360w, URL 480w, URL4 720w, URL5 1080w">
+                <figcaption>...</figcaption>	# Caption for the image
+            </figure>
+
+            <!-- Insert audio -->
+            # src: The location of the audio (mp3)
+            # controls: Include controls such as play/pause and volume buttons
+            # loop: Start playing the audio from the beginning once it finishes
+            # autoplay: Start playing the audio as soon as the page loads
+            <audio controls loop autoplay>
+                <source src="URL" type="audio/mp3">
+                Not supported
+            </audio>
+
+            <!-- Insert video -->
+            # src (source): The location of the video (.mp4)
+            # src (track): The location of the subtitles file (.vtt)
+            # controls: Include controls such as play/pause and volume buttons
+            <video controls>
+                <source src="URL" type="video/mp4"> 
+                <track src="URL" kind="captions" label="english" srclang="en" default>
+                Not supported
+            </video>
+
+            <!-- Embed video from another site (e.g. YouTube) -->
+            <iframe src="URL" title="YouTube video player" frameborder="0" width="560" height="315" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
+            <!-- Insert hyperlink (_blank: opens a new tab) -->
+            # href: The location of the page the links goes to. Can specify an id (#id) to navigate to another element.
+            # target="_blank": To open the linked document in a new page
+            <a href="URL" target="_blank">...</a>
+
+            <!-- Insert a block of navigation links -->
+            <nav>
+                <a href="/html">HTML</a> |
+                <a href="/css">CSS</a> |
+                <a href="/js">JavaScript</a> |
+                <a href="/python/">Python</a>
+            </nav>
+
+            <!-- Insert a button -->
+            <button type="button/reset/submit" id="button">Button</button>
+            <input type="button" name="button" id="button" value="Button">
+            
+            <!-- Create a form -->
+            # action: where to retrieve/send the form-data when the form is submitted (an html file)
+            # method: the type of request (get/post)
+            <form action="…" method="…">
+                <div class="user-details">
+                    # The label's "for" attribute must be the same as the input's "id" attribute
+                    <label for="name"><b>Name</b></label>
+                    # required: an input is required
+                    # name: stores the input value which is accessed by the server when the form is submitted
+                    <input type="text" placeholder="Enter email" name="name" id="name" required>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Enter email" name="email" id="email" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter password" name="password" id="password" required>
+
+                    <label for="phone"><b>Email</b></label>
+                    <input type="tel" placeholder="Enter phone number" name="phone" id="phone" required>
+
+                    <label for="birthday"><b>Date of birth</b></label>
+                    <input type="date" placeholder="Select date of birth" name="birthday" id="birthday">
+
+                    <label for="search"><b>Search</b></label>
+                    <input type="search" placeholder="Search for something" name="search" id="search">
+
+                    <label for="colour"><b>Colour</b></label>
+                    <input type="color" placeholder="Choose a colour" name="colour" id="colour">  # 'Color' not 'colour'
+
+                    <label for="description"><b>Description</b></label>
+                    <textarea placeholder="Enter a short description" name="description" id="description" cols="30" rows="15"></textarea>
+                    
+                    # accept: the type of files that are accepted (i.e. audio/*, image/*, video/*, file_extension ('.doc', '.xlsx', '.jpeg'))
+                    # multiple: multiple file can be uploaded
+                    <label for="file"><b>Upload a file</b></label>
+                    <input type="file" placeholder="Choose a file" name="file" id="file" accept="" >  
+                    
+                    <!-- Radio button -->
+                    <p>Choose a number:</p>
+                    # name-value: the data sent to the server in a key-value pair
+                    <input type="radio" name="radio_number" value="one" id="radio_one">
+                    <label for="radio_one"><b>1</b></label>
+                    <input type="radio" name="radio_number" value="two" id="radio_two">
+                    <label for="radio_two"><b>2</b></label>
+                    <input type="radio" name="radio_number" value="three" id="radio_three">
+                    <label for="radio_three"><b>3</b></label>
+
+                    <fieldset>  # This allows to group multiple elements together
+                        <legend>Colours:</legend>  # Defines a caption for the fieldset
+                        <!-- Checkbox -->
+                        <p>Choose colours:</p>
+                        # checked: the checkbox is checked by default
+                        <input type="checkbox" name="checkbox_colour" value="red" id="checkbox_red" checked>
+                        <label for="red"><b>Red</b></label>
+                        <input type="checkbox" name="checkbox_colour" value="green" id="checkbox_green">
+                        <label for="green"><b>Green</b></label>
+                        <input type="checkbox" name="checkbox_colour" value="blue" id="checkbox_blue">
+                        <label for="blue"><b>Blue</b></label>
+                    </fieldset>
+
+                    <!-- Dropdown -->
+                    <label for="cars"><b>Choose a car:</b></label>
+                    <select name="dropdown_car" id="cars">
+                        <option value="toyota">Toyota</option>
+                        <option value="nissan">Nissan</option>
+                        <option value="bmw">BMW</option>
+                        <option value="audi">Audi</option>
+                    </select>
+
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+
+            <!-- Create a table -->
+            # colspan: the cell spans multiple columns
+            # rowspan: the cell spans multiple rows
+            <table>
+                <thead>  # For the header
+                    <tr>  # Row
+                        <th colspan="2">Full Name</th>  # Header
+                        <th>Age</th>  
+                        <th>Country</th>  
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>John</td>  # Data
+                        <td>Doe</td>  
+                        <td>35</td>
+                        <td>UK</td>
+                    </tr>
+                    <tr>
+                        <td>Rod</td>
+                        <td>Paps</td>  
+                        <td>24</td>
+                        <td>Cyprus</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td rowspan="2">Total</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+            
+        <footer>
+            <p>You reached the end</p>
+        </footer>
+    </body>
+</html>
