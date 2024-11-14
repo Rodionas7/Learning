@@ -1,11 +1,9 @@
 import os
 import dotenv
-from Backend.utils.logger import logger
-from typing import Optional
+from Backend.app.utils.logger import logger
+from Backend.app.utils.get_credentials import get_vault_secret
 from sqlalchemy.engine import URL  # The URL for connecting to the database
 from sqlalchemy import Engine, create_engine  # An Engine is the starting point of the SQLAlchemy application - it manages a pool of database connections and provides a high-level interface for executing SQL commands
-from azure.keyvault.secrets import SecretClient
-from azure.identity import DefaultAzureCredential
 from sqlalchemy.orm import Session, sessionmaker # A Session is an instance of database interaction - each session object manages its own database connection
 
 
@@ -18,28 +16,10 @@ class DBConfig():
             self.username = os.getenv("username")
             self.password = os.getenv("password")
         else:  # Production
-            self.server = self.get_database_credentials("DB-SERVER")
-            self.database =  self.get_database_credentials("DB-DATABASE")
-            self.username =  self.get_database_credentials("DB-USERNAME")
-            self.password = self.get_database_credentials("DB-PASSWORD")
-
-
-    def get_database_credentials(self, key: str) -> Optional[str]:
-        """
-            Fetching the database credentials from an Azure Key Vault
-        """
-
-        VAULT_URL = r"https://{...}.vault.azure.net/"
-        credential = DefaultAzureCredential()
-
-        try:
-            client = SecretClient(vault_url=VAULT_URL, credential=credential)
-            retrieved_secret = client.get_secret(key)
-            return retrieved_secret.value
-
-        except Exception as e:
-            logger.error(f"Connection to SecretClient could not be established. Error: {e}")
-            return os.getenv(key.upper())
+            self.server = get_vault_secret("DB-SERVER")
+            self.database =  get_vault_secret("DB-NAME")
+            self.username =  get_vault_secret("DB-USERNAME")
+            self.password = get_vault_secret("DB-PASSWORD")
 
 
     def get_url(self) -> URL:

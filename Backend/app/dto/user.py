@@ -1,4 +1,4 @@
-from pydantic import BaseModel  # Defines the schema and data validation rules (expected fields, data types and any constraints or rules that should be applied to them)
+from pydantic import BaseModel  # A class for defining the schema and data validation rules (expected fields, data types and any constraints or rules that should be applied to them)
 from typing import Optional
 from datetime import datetime, date
 

@@ -2,7 +2,7 @@ import pyodbc
 from Backend.app.utils.logger import logger
 from sqlalchemy import text, desc
 from Backend.app.models.user import UserDataModel
-from db_config import db_engine, db_session, db_connection_string
+from Backend.app.config.db_config import db_engine, db_session, db_connection_string
 
 
 # SQLAlchemy - Using ORM

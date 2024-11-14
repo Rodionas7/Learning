@@ -20,6 +20,6 @@ class UserDataModel(SQLBaseModel):
 # foreign_key: Establishes a foreign key relationship (`ForeignKey("<other_table.column_name>"))
 # index: Creates an index on this column (True or False), which can improve query performance for columns that are frequently searched
 # unique: Determines if the column must contain unique values (True) or not (False). NULL values are allowed by default.
-# nullable: Determines if the column allows for NULL values (True) or not (False).
+# nullable: Determines if the column can contain NULL values (True) or not (False).
 # default: Specifies a default value thats' assigned at the application level (if none is specified)
 # server_default: Specifies a default value that’s assigned at the database level (if none is specified)
