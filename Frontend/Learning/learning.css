@@ -50,18 +50,18 @@ div {  /* Selects all container elements of the same type (e.g. <div>s) */
    background-position: left/right/center top/bottom/center;  /* By default, the background image is placed at the top-left (left top) corner of an element and repeated both vertically and horizontally */
    background-size: auto/contain/cover;
 
-   transition-property: X;  /* The property which the transition effect is for - need to also have "#id:hover {...}" */
-   transition-duration: 2s/200ms;
-   transition-delay: 1s;
-   transition-timing-function: ease/linear/ease-in/ease-out/ease-in-out;
-   /* ease (default): slow - fast - slow
-      linear: steady speed 
-      ease-in: slow start
-      ease-out: slow end
-      ease-in-out: similar to ease, but starts a bit slower */
-   transition: X 2s 1s linear;  /* transition-property transition-duration transition-delay transition-timing-function */
-   /* Can use 'all' instead of 'X' to apply the transition to any element that changes (not just 'X') */
-
+   /* The transition properties for an element (e.g. div) - need to also have "div:hover {property1: ..., property2: ...}" */
+   transition: X 2s 1s linear;  /* Order:  transition-property transition-duration transition-delay transition-timing-function
+   - transition-property: The CSS property the transition is for (i.e. property1, property2). Can use 'all' instead of a soecific property to apply the transition to any property that changes
+   - transition-duration: How long the transition takes to complete (e.g. 2s)
+   - transition-delay: A delay (in seconds) for the transition (e.g. 1s)
+   - transition-timing-function: The speed curve of the transition
+      • ease (default): slow - fast - slow
+      • linear: steady speed 
+      • ease-in: slow start
+      • ease-out: slow end
+      • ease-in-out: similar to ease, but starts a bit slower
+   */
 
    display: inline/block/inline-block;  /* Controls how much horizontal space an element takes */
    /*
@@ -250,7 +250,8 @@ p.className {  /* e.g. p elements with the class name "className" */
 
 
 
-/* Pseudo-classes: Define a special state of an element (e.g. when you mouse over it) - syntax: 
+/* 
+   Pseudo-classes: Define a special state of an element (e.g. when you mouse over it) - syntax: 
    Syntax:  selector:pseudo-class {
                property: value;
             }
@@ -278,7 +279,8 @@ p.className {  /* e.g. p elements with the class name "className" */
 */
 
 
-/* Pseudo-elements: Used to style specific parts of an element
+/* 
+   Pseudo-elements: Used to style specific parts of an element
    Syntax:  selector::pseudo-element {
                property: value;
             }
@@ -308,6 +310,16 @@ p.className {  /* e.g. p elements with the class name "className" */
    ==> ::marker {...}  (Matches all markers)
 */
 
+/* Pseudo Classes & Pseudo Elements are associated with 'transition' properties */
+
+
+/*
+   Animations: Let elements gradually change from one style to another
+   Syntax:  @keyframes animationName {
+               
+            }
+*/
+
 
 
 /* RESPONSIVE WEB DESIGN */
@@ -316,12 +328,14 @@ p.className {  /* e.g. p elements with the class name "className" */
 /* Following the @ rule is the 'media type' which defines the device being used to display the website - for this purpose we use 'screen' */
 /* Following the media type are the 'media features' which check for a specific feature of the browser or device (e.g. max-width: 650px) - each feature is wrapped in parentheses '()' and multiple features are separated by the 'and' keyword */
 
-/* Common breakpoints:
-320px - 480px: Extra small mobile devices (older smartphones)
-481px - 768px: Small tablets and large smartphones
-769px - 1024px: Small laptops and tablets
-1025px - 1280px: Laptops and small desktops
-1281px and above: Large desktops and high-resolution screens */
+/*
+   Breakpoint: a specific width at which the webpage's style is changd to ensure the best possible user exeprience - common breakpoints:
+   - 320px - 480px: Extra small mobile devices (older smartphones)
+   - 481px - 768px: Small tablets and large smartphones
+   - 769px - 1024px: Small laptops and tablets
+   - 1025px - 1280px: Laptops and small desktops
+   - 1281px and above: Large desktops and high-resolution screens
+*/
 
 /* Mobile */
 @media only screen and (max-width: 480px) {
@@ -344,16 +358,18 @@ p.className {  /* e.g. p elements with the class name "className" */
    }
 }
 
-/* Fluid Layout
-- Use of percentage-based (%) values or relative units (em, rem) for containers instead of fixed pixel (px) values. 
-- Use the 'min-width' & 'max-width' properties to ensure that the container doesn't shrink too small on small devices or too large on large devices, maintaining a readable layout.
-- Use Flexbox and Grid since these layout modules inherently support fluid layouts
-- Use flexible images (i.e. background-size: cover)
-==> These allow containers to scale based on the viewport width, maintaining a balanced, readable look without being too wide ot too narrow */
-/* Breakpoint: a specific width at which the webpage's style is changd to ensure the best possible user exeprience */
+/* 
+   Fluid Layout
+   - Use of percentage-based (%) values or relative units (em, rem) for containers instead of fixed pixel (px) values. 
+   - Use the 'min-width' & 'max-width' properties to ensure that the container doesn't shrink too small on small devices or too large on large devices, maintaining a readable layout.
+   - Use Flexbox and Grid since these layout modules inherently support fluid layouts
+   - Use flexible images (i.e. background-size: cover)
+   ==> These allow containers to scale based on the viewport width, maintaining a balanced, readable look without being too wide ot too narrow
+*/
 
 
-/* Tailwind: A utility-first CSS framework  
-Utility classes are redefined calsses for styling - see https://tailwindcss.com/ for details
-You can extend or modify the default Tailwind styles using the `tailwind.config.js` file
+/* 
+   Tailwind: A utility-first CSS framework  
+   Utility classes are redefined calsses for styling - see https://tailwindcss.com/ for details
+   You can extend or modify the default Tailwind styles using the `tailwind.config.js` file
 */
