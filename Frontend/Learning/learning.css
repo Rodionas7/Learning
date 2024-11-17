@@ -51,16 +51,37 @@ div {  /* Selects all container elements of the same type (e.g. <div>s) */
    background-size: auto/contain/cover;
 
    /* The transition properties for an element (e.g. div) - need to also have "div:hover {property1: ..., property2: ...}" */
-   transition: X 2s 1s linear;  /* Order:  transition-property transition-duration transition-delay transition-timing-function
+   transition: X 2s 1s linear;
+   /* Order:  transition-property transition-duration transition-delay transition-timing-function
    - transition-property: The CSS property the transition is for (i.e. property1, property2). Can use 'all' instead of a soecific property to apply the transition to any property that changes
    - transition-duration: How long the transition takes to complete (e.g. 2s)
-   - transition-delay: A delay (in seconds) for the transition (e.g. 1s)
+   - transition-delay: A delay (in seconds) for the start of the transition (e.g. 1s)
    - transition-timing-function: The speed curve of the transition
       • ease (default): slow - fast - slow
       • linear: steady speed 
       • ease-in: slow start
       • ease-out: slow end
       • ease-in-out: similar to ease, but starts a bit slower
+   */
+
+   /* The animation properties for an element (e.g. div) - need to also have a 'keyframe'*/
+   animation: animationX 4s linear 1s infinite alternate
+   /* Order: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction
+   - animation-name: The name of the animation (defined in 'keyframe')
+   - animation-duration: How long the animation takes to complete (e.g. 4s)
+   - animation-timing-function: The speed curve of the animation
+      • ease (default) - slow - fast - slow
+      • linear: steady speed 
+      • ease-in: slow start
+      • ease-out: slow end
+      • ease-in-out: similar to ease, but starts a bit slower
+   - animation-delay: A delay (in seconds) for the start of the animation (e.g. 1s)
+   - animation-iteration-count: How many the animation should run
+   - animation-direction: whether an animation should be played forwards, backwards or in alternate cycles
+      • normal (default): Played forwards
+      • reverse: Played backwards
+      • alternate: Played forwards first, then backwards
+      • alternate-reverse: Played backwards first, then forwards
    */
 
    display: inline/block/inline-block;  /* Controls how much horizontal space an element takes */
@@ -316,8 +337,13 @@ p.className {  /* e.g. p elements with the class name "className" */
 /*
    Animations: Let elements gradually change from one style to another
    Syntax:  @keyframes animationName {
-               
+               0% {background-color: red;}
+               25% {background-color: orange;}
+               50% {background-color: yellow;}
+               75% {background-color: blue;}
+               100% {background-color: green;}
             }
+      The % represent the stage of the animation.
 */
 
 
