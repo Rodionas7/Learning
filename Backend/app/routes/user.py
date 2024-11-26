@@ -17,7 +17,7 @@ def connect_db():
         
 
 @router.get(path="/user", dependencies=Security(dependency=azure_scheme, scopes=["User.Read"]), response_model=UserDTO)
-# Example request: https://localhost/api/users/user?user_id=3
+# Example request: https://localhost:8000/api/users/user?age=30
 async def get_users_by_age(user_age: int, session: Session = Depends(connect_db)):  # This is the "request handler"/endpoint function
     try:
         result = session.query(UserDataModel).filter(UserDataModel.age > user_age).order_by(UserDataModel.age).all()

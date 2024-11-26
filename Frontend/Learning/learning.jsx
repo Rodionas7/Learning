@@ -86,6 +86,7 @@
 
 import React, { useMemo } from "react";
 import { useState, useEffect, useContext, useRef, useCallback } from "react";
+import { useMsal } from '@azure/msal-react';
 
 
 // Creating component using function notation
@@ -98,6 +99,8 @@ function MyComponentRegular(props) {  // Props
         color: "red",
         new: false
     });
+    const [instance, accounts] = useMsal();
+
 
     const updateValues = useCallback(() => {
         setCount(prevCount => prevCount + 1);
@@ -115,6 +118,38 @@ function MyComponentRegular(props) {  // Props
             window.removeEventListener("click", onClick); // Cleanup
         };
     }, [count]);
+
+    const getUsers = async (age) => {
+        const result = await instance.acquireTokenSilent({
+            // acquireTokenSilent: used to acquire an access token without displaying any UI or prompting for user credentials
+            scopes: ['api://.../User.Read']  // This is the scope the token is requested for
+        });
+        
+        if (!result.accessToken) {
+            throw new Error("Token couldn't be acquired");
+        }
+        
+        // Construct the URL with query params
+        const searchParams = new URLSearchParams({ user_age: age });
+        // `URLSearchParams` implements a 'toString()' method under the hood which converts the object containing the query params into a string to be appended to the URL
+        const url = `https://localhost:8000/api/users/user?${searchParams}`;
+        const userResponse = await fetch (url, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Authorization': `Bearer ${result.accessToken}`,  // Add the token to the Authorization header
+                'Content-Type': 'application/json'  // Indicate JSON data
+            },
+        });
+
+        // Check for HTTP response status
+        if (!userResponse.ok) {
+            throw new Error(`HTTP error, status: ${userResponse.status}`);
+        }
+
+        return await userResponse.json()
+    }
+
 
     return (
         <>
